@@ -67,6 +67,9 @@ export default async function handler(
         )
       )
       .then(response => {
+
+        console.log("::: backend_response :::", response);
+
         const formattedData = response.data.map(item => ({
           ...item.data,
           ts: item.ts,
@@ -79,6 +82,9 @@ export default async function handler(
         });
       })
       .catch(err => {
+
+        console.log("::: backend_error :::", err);
+
         return res.status(400).json(err);
       });
   }
