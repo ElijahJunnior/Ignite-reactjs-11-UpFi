@@ -18,7 +18,18 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
 
   const formValidations = {
     image: {
-      // TODO REQUIRED, LESS THAN 10 MB AND ACCEPTED FORMATS VALIDATIONS
+      required: "Arquivo obrigatório",
+      validate: {
+        lessThan10MB: images => {
+          return images[0].size <= 10000000
+            || 'O arquivo deve ser menor que 10MB'
+        },
+        acceptedFormats: images => {
+          const formatsAccepteds = ["image/jpeg", "image/png", "image/gif"];
+          return formatsAccepteds.includes(images[0].type)
+            || 'Somente são aceitos arquivos PNG, JPEG e GIF';
+        }
+      }
     },
     title: {
       // TODO REQUIRED, MIN AND MAX LENGTH VALIDATIONS
@@ -60,6 +71,7 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
 
   return (
     <Box as="form" width="100%" onSubmit={handleSubmit(onSubmit)}>
+      {console.log("::: errors :::", errors)}
       <Stack spacing={4}>
         <FileInput
           setImageUrl={setImageUrl}
@@ -67,20 +79,24 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
           setLocalImageUrl={setLocalImageUrl}
           setError={setError}
           trigger={trigger}
-          // TODO SEND IMAGE ERRORS
-          // TODO REGISTER IMAGE INPUT WITH VALIDATIONS
+          {...register('image', formValidations.image)}
+          error={errors.image}
+        // TODO SEND IMAGE ERRORS
+        // TODO REGISTER IMAGE INPUT WITH VALIDATIONS
         />
 
         <TextInput
           placeholder="Título da imagem..."
-          // TODO SEND TITLE ERRORS
-          // TODO REGISTER TITLE INPUT WITH VALIDATIONS
+          {...register('title')}
+        // TODO SEND TITLE ERRORS
+        // TODO REGISTER TITLE INPUT WITH VALIDATIONS
         />
 
         <TextInput
           placeholder="Descrição da imagem..."
-          // TODO SEND DESCRIPTION ERRORS
-          // TODO REGISTER DESCRIPTION INPUT WITH VALIDATIONS
+          {...register('description')}
+        // TODO SEND DESCRIPTION ERRORS
+        // TODO REGISTER DESCRIPTION INPUT WITH VALIDATIONS
         />
       </Stack>
 
