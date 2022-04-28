@@ -23,11 +23,7 @@ export default function Home(): JSX.Element {
 
       try {
 
-        console.log(pageParam);
-
-        api.get(`images?after${pageParam}`).then(response => {
-          console.log(response)
-        })
+        return api.get(`images?after${pageParam}`).then(res => res.data);
 
       } catch (error) {
 
@@ -36,9 +32,10 @@ export default function Home(): JSX.Element {
       }
 
       // TODO AXIOS REQUEST WITH PARAM
-    }, {
-    // TODO GET AND RETURN NEXT PAGE PARAM
-  }
+    },
+    {
+      // TODO GET AND RETURN NEXT PAGE PARAM
+    }
   );
 
   const formattedData = useMemo(() => {
