@@ -19,21 +19,21 @@ export default function Home(): JSX.Element {
     hasNextPage,
   } = useInfiniteQuery(
     'images',
-    // TODO AXIOS REQUEST WITH PARAM
-    ({ pageParam = null }) => {
-      return api.get("/api/images", {
-        params: {
-          after: pageParam
-        }
-      }).then(res => res.data);
-    },
+    getDataFromBack,
     {
-      // TODO GET AND RETURN NEXT PAGE PARAM
       getNextPageParam: (previewsReqData) => {
         return previewsReqData?.after
       }
     }
   );
+
+  function getDataFromBack({ pageParam = null }) {
+    return api.get("/api/images", {
+      params: {
+        after: pageParam
+      }
+    }).then(res => res.data);
+  }
 
   const formattedData = useMemo(() => {
     // TODO FORMAT AND FLAT DATA ARRAY
@@ -48,6 +48,7 @@ export default function Home(): JSX.Element {
   return (
     <>
       {console.log("hasNextPage", hasNextPage)}
+      {console.log("data", data?.pages.flat(1))}
       <Header />
 
       <Box maxW={1120} px={20} mx="auto" my={20}>
