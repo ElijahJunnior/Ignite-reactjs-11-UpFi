@@ -19,11 +19,17 @@ export function ModalViewImage({
         <ModalBody padding="0">
           <Image src={imgUrl} maxW="900px" maxH="600px" />
         </ModalBody>
-        <ModalFooter justifyContent="flex-start">
+        <ModalFooter justifyContent="flex-start" py="8px" px="10px">
           <Link
-            href={imgUrl}
-            fontFamily="Roboto" fontSize="14px" fontWeight="400"
-            lineHeight="16px" color="gray.50" textDecor="none"
+            href={imgUrl} isExternal
+            py="4px" px="8px" textDecor="none"
+            border="solid" borderWidth="1px" borderRadius="4px"
+            color="gray.50" borderColor="transparent"
+            fontFamily="Roboto" fontSize="14px"
+            fontWeight="400" lineHeight="14px"
+            _hover={{ bg: "red.400" }}
+            _active={{ bg: "blue.400" }}
+            _focus={{ borderColor: "blue.500" }}
           >
             Abrir Original
           </Link>

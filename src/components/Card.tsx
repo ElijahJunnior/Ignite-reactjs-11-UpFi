@@ -30,8 +30,9 @@ export function Card({ data, viewImage }: CardProps): JSX.Element {
           src={data.url}
           alt={data.title}
           objectFit="cover"
-          w="max"
-          h={48}
+          // w="max"
+          width="100%"
+          height="192px"
           borderTopRadius="md"
           onClick={() => viewImage(data.url)}
           onLoad={() => setIsLoading(false)}

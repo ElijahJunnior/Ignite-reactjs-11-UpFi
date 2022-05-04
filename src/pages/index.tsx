@@ -77,6 +77,7 @@ export default function Home(): JSX.Element {
         {
           hasNextPage && (
             <Button
+              mt="40px"
               onClick={() => fetchNextPage()}
               disabled={isFetchingNextPage}
             >
