@@ -27,11 +27,9 @@ export function ModalViewImage({
             color="gray.50" borderColor="transparent"
             fontFamily="Roboto" fontSize="14px"
             fontWeight="400" lineHeight="14px"
-            _hover={{ bg: "red.400" }}
-            _active={{ bg: "blue.400" }}
             _focus={{ borderColor: "blue.500" }}
           >
-            Abrir Original
+            Abrir original
           </Link>
         </ModalFooter>
       </ModalContent>
